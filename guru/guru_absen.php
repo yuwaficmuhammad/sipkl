@@ -60,14 +60,17 @@ if($conn) {
         </header>
 
         <main class="main-content">
-            <div class="card" style="margin-bottom:20px; padding:15px;">
-                <form method="GET" style="display:flex; gap:10px; align-items:flex-end;">
+            <div class="card" style="margin-bottom:20px; padding:15px; display:flex; flex-wrap:wrap; gap:15px; align-items:flex-end; justify-content:space-between;">
+                <form method="GET" style="display:flex; gap:10px; align-items:flex-end; flex:1; min-width:250px;">
                     <div style="flex:1;">
                         <label style="font-size:12px; color:var(--text-muted); font-weight:600;">Filter Tanggal</label>
                         <input type="date" name="tanggal" value="<?= $filter_tgl ?>" class="form-control" style="padding:10px; border-radius:8px; border:1px solid var(--border); width:100%;" onchange="this.form.submit()">
                     </div>
                     <button type="submit" class="btn btn-primary" style="padding:10px 15px;"><i data-lucide="search" style="width:18px;"></i></button>
                 </form>
+                <a href="guru_export_pdf.php?tanggal=<?= urlencode($filter_tgl) ?>" class="btn" style="background:#0ea5e9; color:#fff; text-decoration:none; display:inline-flex; align-items:center; gap:8px; padding:10px 15px; border-radius:8px; font-weight:600; font-size:13px;">
+                    <i data-lucide="printer" style="width:16px;"></i> Cetak PDF
+                </a>
             </div>
 
             <div class="card">

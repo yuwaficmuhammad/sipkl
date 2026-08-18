@@ -178,9 +178,14 @@ if($conn) {
                         </tbody>
                     </table>
                 </div>
-                <a href="admin_export.php?ta=<?= urlencode($selected_ta) ?>" class="btn" style="background:var(--bg-color); color:var(--text-main); border:1px solid var(--border); margin-top:16px; display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;">
-                    <i data-lucide="printer" style="width:18px;"></i> Cetak Laporan CSV / Excel
-                </a>
+                <div style="display:flex; gap:10px; margin-top:16px;">
+                    <a href="admin_export.php?ta=<?= urlencode($selected_ta) ?>" class="btn" style="flex:1; background:var(--bg-color); color:var(--text-main); border:1px solid var(--border); display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;">
+                        <i data-lucide="file-spreadsheet" style="width:18px;"></i> Laporan CSV
+                    </a>
+                    <a href="admin_export_pdf.php?ta=<?= urlencode($selected_ta) ?>" class="btn" style="flex:1; background:#0ea5e9; color:#fff; border:1px solid #0ea5e9; display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;">
+                        <i data-lucide="printer" style="width:18px;"></i> Laporan PDF
+                    </a>
+                </div>
             </div>
             
         </main>

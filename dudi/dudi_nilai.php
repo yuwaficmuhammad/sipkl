@@ -82,9 +82,15 @@ if($conn) {
         
         <main class="main-content">
             <?= $msg ?>
-            <div class="notification-banner" style="background:#fff3cd; color:#856404; border-left:4px solid #f59e0b;">
+            <div class="notification-banner" style="background:#fff3cd; color:#856404; border-left:4px solid #f59e0b; margin-bottom: 10px;">
                 <i data-lucide="alert-triangle"></i>
                 <span>Pengisian nilai ini akan langsung masuk ke rapor sekolah. Mohon isi dengan objektif.</span>
+            </div>
+
+            <div style="margin-bottom: 20px; display: flex; justify-content: flex-end;">
+                <a href="dudi_export_pdf.php" class="btn" style="background:#0ea5e9; color:#fff; text-decoration:none; display:inline-flex; align-items:center; gap:8px; padding:10px 15px; border-radius:8px; font-weight:600; font-size:13px;">
+                    <i data-lucide="printer" style="width:16px;"></i> Cetak Laporan PDF
+                </a>
             </div>
             
             <?php if(empty($siswas)): ?>

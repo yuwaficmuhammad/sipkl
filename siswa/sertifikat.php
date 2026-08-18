@@ -1,4 +1,6 @@
 <?php
+use Dompdf\Dompdf;
+use Dompdf\Options;
 require_once '../includes/config.php';
 checkLogin();
 
@@ -7,6 +9,8 @@ if(getRole() !== 'siswa') {
 }
 
 $tipe = $_GET['tipe'] ?? '';
+$format = $_GET['format'] ?? 'html';
+
 if($tipe !== 'internal' && $tipe !== 'eksternal') {
     die("Tipe sertifikat tidak valid.");
 }
@@ -88,6 +92,8 @@ if($tipe == 'internal') {
     $jabatan_penandatangan = "Pimpinan Industri / Instruktur";
 }
 
+// Mulai buffer output HTML
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -131,14 +137,22 @@ if($tipe == 'internal') {
         .btn-print { background: #0ea5e9; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: bold; font-family: sans-serif; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-print:hover { background: #0284c7; }
         .btn-back { background: #64748b; text-decoration: none; padding: 12px 24px; border-radius: 8px; color: white; display: inline-flex; align-items: center; gap: 5px; }
+        <?php if($format === 'pdf'): ?>
+        body { background: white !important; }
+        .action-buttons { display: none !important; }
+        .certificate-wrapper { box-shadow: none !important; width: 100% !important; height: 100% !important; padding: 30px !important; }
+        <?php endif; ?>
     </style>
 </head>
 <body>
 
+    <?php if($format !== 'pdf'): ?>
     <div class="action-buttons">
-        <a href="../index.php" class="btn-back"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Kembali ke Dashboard</a>
-        <button class="btn-print" onclick="window.print()">Cetak PDF / Print</button>
+        <a href="../index.php" class="btn-back"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Kembali</a>
+        <a href="?tipe=<?= $tipe ?>&format=pdf" class="btn-print" style="text-decoration:none; display:inline-block;">Unduh PDF Murni</a>
+        <button class="btn-print" style="background:#6366f1;" onclick="window.print()">Cetak Biasa (Browser)</button>
     </div>
+    <?php endif; ?>
 
     <div class="certificate-wrapper">
         <div class="certificate-border"></div>
@@ -181,3 +195,25 @@ if($tipe == 'internal') {
     </script>
 </body>
 </html>
+<?php
+$html = ob_get_clean();
+
+if($format === 'pdf') {
+    require_once '../vendor/autoload.php';
+
+    $options = new Options();
+    $options->set('isHtml5ParserEnabled', true);
+    $options->set('isRemoteEnabled', true); // Agar bisa load gambar
+
+    $dompdf = new Dompdf($options);
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    
+    $filename = "Sertifikat_" . ucfirst($tipe) . "_" . str_replace(' ', '_', $nama_siswa) . ".pdf";
+    $dompdf->stream($filename, ["Attachment" => true]);
+    exit;
+} else {
+    echo $html;
+}
+?>
