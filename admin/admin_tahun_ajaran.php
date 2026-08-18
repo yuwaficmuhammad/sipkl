@@ -69,7 +69,7 @@ if($conn) {
     <title>Master Tahun Ajaran - Admin SIPKL</title>
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="../assets/css/style_v2.css?v=<?= filemtime('../assets/css/style_v2.css') ?>">
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .table-responsive { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }
         table { width: 100%; border-collapse: collapse; font-size: 13px; }
