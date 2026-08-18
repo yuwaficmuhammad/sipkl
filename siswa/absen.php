@@ -11,7 +11,7 @@ $user_agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 $is_mobile = preg_match('/Mobile|Android|BlackBerry|iPhone|Windows Phone/i', $user_agent);
 
 if(!$is_mobile) {
-    die('<!DOCTYPE html><html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Akses Ditolak</title><link rel="stylesheet" href="../assets/css/style.css?v=<?= filemtime('../assets/css/style.css') ?>"></head><body style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--bg-color);margin:0;"><div style="text-align:center;padding:40px;background:white;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);max-width:350px;"><div style="font-size:48px;margin-bottom:10px;">📱</div><h2 style="margin:0 0 10px 0;color:var(--text-main);">Gunakan HP Anda</h2><p style="color:var(--text-muted);font-size:14px;line-height:1.5;margin-bottom:20px;">Fitur absensi wajah dan lokasi hanya dapat dibuka melalui *browser* di perangkat *mobile* (HP) untuk memastikan keaslian lokasi GPS.</p><a href="../index.php" style="display:inline-block;padding:10px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Kembali ke Dasbor</a></div></body></html>');
+    die('<!DOCTYPE html><html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Akses Ditolak</title><link rel="stylesheet" href="../assets/css/style_v2.css?v=<?= filemtime('../assets/css/style_v2.css') ?>"></head><body style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--bg-color);margin:0;"><div style="text-align:center;padding:40px;background:white;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);max-width:350px;"><div style="font-size:48px;margin-bottom:10px;">📱</div><h2 style="margin:0 0 10px 0;color:var(--text-main);">Gunakan HP Anda</h2><p style="color:var(--text-muted);font-size:14px;line-height:1.5;margin-bottom:20px;">Fitur absensi wajah dan lokasi hanya dapat dibuka melalui *browser* di perangkat *mobile* (HP) untuk memastikan keaslian lokasi GPS.</p><a href="../index.php" style="display:inline-block;padding:10px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Kembali ke Dasbor</a></div></body></html>');
 }
 
 $msg = '';
@@ -51,7 +51,7 @@ if($conn) {
 }
 
 if(empty($tipe_pkl)) {
-    die('<!DOCTYPE html><html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Belum Ada Penempatan</title><link rel="stylesheet" href="../assets/css/style.css?v=<?= filemtime('../assets/css/style.css') ?>"></head><body style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--bg-color);margin:0;"><div style="text-align:center;padding:40px;background:white;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);max-width:350px;"><div style="font-size:48px;margin-bottom:10px;">🛑</div><h2 style="margin:0 0 10px 0;color:var(--text-main);">Belum Penempatan</h2><p style="color:var(--text-muted);font-size:14px;line-height:1.5;margin-bottom:20px;">Anda belum ditempatkan di Proyek Internal maupun Mitra DUDI. Hubungi Admin Pokja.</p><a href="../index.php" style="display:inline-block;padding:10px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Kembali</a></div></body></html>');
+    die('<!DOCTYPE html><html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Belum Ada Penempatan</title><link rel="stylesheet" href="../assets/css/style_v2.css?v=<?= filemtime('../assets/css/style_v2.css') ?>"></head><body style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--bg-color);margin:0;"><div style="text-align:center;padding:40px;background:white;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);max-width:350px;"><div style="font-size:48px;margin-bottom:10px;">🛑</div><h2 style="margin:0 0 10px 0;color:var(--text-main);">Belum Penempatan</h2><p style="color:var(--text-muted);font-size:14px;line-height:1.5;margin-bottom:20px;">Anda belum ditempatkan di Proyek Internal maupun Mitra DUDI. Hubungi Admin Pokja.</p><a href="../index.php" style="display:inline-block;padding:10px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Kembali</a></div></body></html>');
 }
 
 // Cek status absen hari ini
@@ -123,7 +123,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Absensi PKL</title>
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
-    <link rel="stylesheet" href="../assets/css/style.css?v=<?= filemtime('../assets/css/style.css') ?>">
+    <link rel="stylesheet" href="../assets/css/style_v2.css?v=<?= filemtime('../assets/css/style_v2.css') ?>">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="../assets/js/face-api.min.js"></script>
     <style>

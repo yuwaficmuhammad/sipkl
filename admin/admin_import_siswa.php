@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['ac
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Import CSV Siswa - Admin SIPKL</title>
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
-    <link rel="stylesheet" href="../assets/css/style.css?v=<?= filemtime('../assets/css/style.css') ?>">
+    <link rel="stylesheet" href="../assets/css/style_v2.css?v=<?= filemtime('../assets/css/style_v2.css') ?>">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .table-responsive { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }

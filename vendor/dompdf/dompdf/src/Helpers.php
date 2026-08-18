@@ -133,7 +133,7 @@ class Helpers
         }
 
         $ret = $protocol;
-        // Protocol relative urls (e.g. "//example.org/style.css")
+        // Protocol relative urls (e.g. "//example.org/style_v2.css")
         if (strpos($url, '//') === 0) {
             $ret .= substr($url, 2);
             //remote urls with backslash in html/css are not really correct, but lets be genereous

@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Login - SIPKL</title>
     <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
-    <link rel="stylesheet" href="../assets/css/style.css?v=<?= filemtime('../assets/css/style.css') ?>">
+    <link rel="stylesheet" href="../assets/css/style_v2.css?v=<?= filemtime('../assets/css/style_v2.css') ?>">
     <!-- SVG Renderer yang Sangat Cepat -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
