@@ -79,8 +79,87 @@ Untuk memulai pengaturan awal (*setup*), silakan masuk menggunakan akun Administ
 
 ---
 
+## 👥 Panduan Penggunaan Per Role
+
+### 🔴 1. Admin Pokja PKL
+
+Admin adalah pengelola utama sistem. Semua konfigurasi awal **wajib** diselesaikan oleh Admin sebelum role lain dapat menggunakan aplikasi.
+
+**Langkah-langkah:**
+
+1. **Login** menggunakan akun admin (`adminpkl` / `admin123`, segera ganti setelah login pertama).
+2. **Kelola Tahun Ajaran** → Menu *Tahun Ajaran*: Buat tahun ajaran aktif (contoh: `2026/2027`) dan aktifkan.
+3. **Atur Timeline PKL** → Menu *Timeline*: Tentukan batas waktu Gate 1–4, tanggal mulai & selesai PKL Eksternal.
+4. **Atur Lokasi Sekolah (GPS)** → Menu *Lembaga*: Masukkan koordinat `lat,long` sekolah untuk validasi Geofencing absensi internal.
+5. **Import Data Guru** → Menu *Import Guru*: Upload file Excel data guru pembimbing sekolah.
+6. **Import Data Siswa** → Menu *Import Siswa*: Upload file Excel data siswa PKL.
+7. **Kelola Akun DUDI** → Menu *Manajemen DUDI*: Tambah akun mitra industri beserta data lokasi GPS perusahaan.
+8. **Mapping Siswa ke DUDI** → Menu *Mapping DUDI*: Petakan siswa ke perusahaan mitra dan tentukan guru pembimbingnya.
+9. **Kelola Proyek Internal** → Menu *Proyek Internal*: Buat proyek internal dan assign tim siswa beserta ketua tim.
+10. **Pantau Absensi** → Menu *Rekap Absensi*: Lihat rekapitulasi kehadiran seluruh siswa.
+11. **Export Data** → Menu *Export*: Unduh data absensi/penilaian dalam format Excel/CSV.
+12. **Kelola Arsip** → Menu *Arsip*: Akses data tahun ajaran yang sudah selesai.
+
+---
+
+### 🟢 2. Siswa
+
+Siswa menggunakan aplikasi setiap hari untuk absensi dan pencatatan kegiatan.
+
+**Langkah-langkah:**
+
+1. **Login** menggunakan username & password yang diberikan oleh Admin.
+2. **Cek Dashboard** → Lihat notifikasi timeline (Gate aktif, pengingat deadline) dan status penempatan PKL.
+3. **Absensi Datang** → Menu *Absensi* → Tombol **Datang**:
+   - Aplikasi akan mengakses **kamera** untuk validasi wajah (Face Recognition).
+   - Aplikasi akan mengakses **GPS** untuk validasi lokasi (radius 100m dari sekolah/perusahaan).
+   - Jika valid, waktu datang tercatat otomatis.
+4. **Absensi Pulang** → Lakukan hal yang sama dengan tombol **Pulang** saat hendak pulang.
+5. **Isi Jurnal/Logbook Harian** → Menu *Logbook*: Catat kegiatan yang dikerjakan hari ini sebelum pulang.
+6. **Pantau Rekap Absensi** → Lihat riwayat kehadiran pribadi (Hadir, Sakit, Izin, Alpha).
+7. **Unduh Sertifikat** → Menu *Sertifikat*: Unduh sertifikat PKL setelah program selesai (jika tersedia).
+
+> ⚠️ Pastikan izin **Kamera** dan **Lokasi** sudah diberikan di browser sebelum melakukan absensi.
+
+---
+
+### 🔵 3. Guru Pembimbing Sekolah
+
+Guru memantau dan memvalidasi aktivitas siswa yang menjadi tanggung jawabnya.
+
+**Langkah-langkah:**
+
+1. **Login** menggunakan akun yang di-import oleh Admin.
+2. **Cek Dashboard** → Lihat ringkasan siswa bimbingan dan notifikasi timeline Gate.
+3. **Pantau Absensi Siswa** → Menu *Rekap Absensi*: Lihat detail kehadiran setiap siswa bimbingan (waktu datang, pulang, foto, koordinat GPS).
+4. **Validasi Logbook** → Menu *Logbook Siswa*: Baca dan verifikasi catatan kegiatan harian siswa.
+5. **Monitor Gate Proyek** → Menu *Gate Proyek*: Pantau progres gate proyek internal siswa bimbingan (Gate 1–4) dan lihat dokumen yang diupload.
+6. **Lihat Profil** → Perbarui data profil (foto, kontak, alamat) melalui menu Profil.
+
+---
+
+### 🟠 4. Pembimbing DUDI (Mitra Industri)
+
+Pembimbing dari perusahaan memantau kehadiran dan memberikan penilaian akhir siswa magang.
+
+**Langkah-langkah:**
+
+1. **Login** menggunakan akun yang dibuat oleh Admin (akun khusus role `pembimbing_dudika`).
+2. **Cek Dashboard** → Lihat daftar siswa magang di perusahaan Anda.
+3. **Pantau Absensi Siswa** → Menu *Rekap Absensi*: Lihat kehadiran siswa di perusahaan (waktu datang, pulang, foto selfie, koordinat lokasi).
+4. **Berikan Penilaian Akhir** → Menu *Penilaian*:
+   - Isi nilai **Softskill** (sikap, kedisiplinan, komunikasi) — skala 0–100.
+   - Isi nilai **Hardskill** (kompetensi teknis) — skala 0–100.
+   - Tambahkan catatan/rekomendasi untuk siswa.
+5. **Perbarui Profil** → Pastikan data perusahaan (nama pimpinan, nama instruktur, nomor kontak, koordinat GPS kantor) sudah benar agar validasi absensi siswa berjalan akurat.
+
+> 💡 Koordinat GPS perusahaan digunakan sebagai pusat validasi lokasi absensi siswa PKL Eksternal.
+
+---
+
 ## 🛡️ Keamanan & Lisensi
 
 Aplikasi ini dikembangkan dengan kaidah *Secure Coding* dan diinisiasi untuk kebutuhan edukasi serta implementasi sistem sekolah yang aman.
 
 Dilisensikan di bawah **MIT License**. Jangan ragu untuk melakukan *fork*, modifikasi, maupun kontribusi!
+
