@@ -1,0 +1,14 @@
+ErrorDocument 404 /app/404.php
+ErrorDocument 403 /app/403.php
+ErrorDocument 500 /app/404.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Cegah akses langsung ke file .env atau .htaccess
+    RewriteRule ^\.env$ - [F]
+    RewriteRule ^\.htaccess$ - [F]
+    
+    # Cegah akses directory listing
+    Options -Indexes
+</IfModule>

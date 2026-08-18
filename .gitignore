@@ -1,0 +1,15 @@
+# Uploaded Files
+app/uploads/profil/*
+!app/uploads/profil/index.html
+app/uploads/absensi/*
+!app/uploads/absensi/index.html
+app/uploads/dokumen/*
+!app/uploads/dokumen/index.html
+
+# Mac OS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.swp
