@@ -1,3 +1,38 @@
+-- ========================================
+-- TABEL UTAMA (harus dibuat pertama)
+-- ========================================
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `role` enum('admin','siswa','pembimbing_sekolah','pembimbing_dudika') NOT NULL,
+  `jurusan` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `tahun_ajaran` varchar(20) DEFAULT NULL,
+  `alamat` text,
+  `kontak` varchar(50) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `dudi_nama_pimpinan` varchar(100) DEFAULT NULL,
+  `dudi_nama_instruktur` varchar(100) DEFAULT NULL,
+  `dudi_nomor_instruktur` varchar(50) DEFAULT NULL,
+  `dudi_latlong` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  KEY `idx_role` (`role`),
+  KEY `idx_jurusan` (`jurusan`),
+  KEY `idx_tahun_ajaran` (`tahun_ajaran`),
+  KEY `idx_role_jurusan_ta` (`role`,`jurusan`,`tahun_ajaran`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- ========================================
+-- TABEL REFERENSI USERS
+-- ========================================
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `absensi_siswa` (
@@ -176,32 +211,7 @@ CREATE TABLE `tim_proyek` (
   CONSTRAINT `tim_proyek_ibfk_2` FOREIGN KEY (`id_siswa`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `role` enum('admin','siswa','pembimbing_sekolah','pembimbing_dudika') NOT NULL,
-  `jurusan` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `tahun_ajaran` varchar(20) DEFAULT NULL,
-  `alamat` text,
-  `kontak` varchar(50) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL,
-  `dudi_nama_pimpinan` varchar(100) DEFAULT NULL,
-  `dudi_nama_instruktur` varchar(100) DEFAULT NULL,
-  `dudi_nomor_instruktur` varchar(50) DEFAULT NULL,
-  `dudi_latlong` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  KEY `idx_role` (`role`),
-  KEY `idx_jurusan` (`jurusan`),
-  KEY `idx_tahun_ajaran` (`tahun_ajaran`),
-  KEY `idx_role_jurusan_ta` (`role`,`jurusan`,`tahun_ajaran`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 -- ========================================
 -- DATA DEFAULT (wajib diisi saat instalasi)
