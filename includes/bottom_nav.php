@@ -2,6 +2,9 @@
 // Menerima variabel $active_page dari halaman yang melakukan include
 $active_page = $active_page ?? 'home';
 $role = getRole();
+// Tentukan path relatif ke root untuk assets
+$depth = substr_count(str_replace(BASE_URL, '', $_SERVER['REQUEST_URI'] ?? ''), '/');
+$root  = str_repeat('../', max(0, $depth));
 ?>
 <nav class="bottom-nav">
     <a href="<?= BASE_URL ?>index.php" class="nav-item <?= $active_page == 'home' ? 'active' : '' ?>">
@@ -37,6 +40,13 @@ $role = getRole();
         <span>Proyek</span>
     </a>
     <?php endif; ?>
+
+    <!-- Chat Nav Item -->
+    <a href="<?= BASE_URL ?>chat/index.php" class="nav-item <?= $active_page == 'chat' ? 'active' : '' ?>" style="position:relative;">
+        <i data-lucide="message-circle"></i>
+        <span id="chat-nav-badge" class="badge-dot" style="display:none;">0</span>
+        <span>Chat</span>
+    </a>
     
     <a href="<?= BASE_URL ?>profil.php" class="nav-item <?= $active_page == 'profil' ? 'active' : '' ?>">
         <i data-lucide="user"></i>
@@ -44,8 +54,28 @@ $role = getRole();
     </a>
 </nav>
 
+<!-- NOTIFICATION PANEL -->
+<div id="notif-panel" role="dialog" aria-modal="true" aria-label="Notifikasi">
+    <div class="notif-sheet">
+        <div class="notif-sheet-header">
+            <h3>🔔 Notifikasi</h3>
+            <div class="notif-actions">
+                <button id="notif-read-all" type="button">Tandai semua dibaca</button>
+                <button id="notif-panel-close" class="modal-close" type="button">
+                    <i data-lucide="x" style="width:16px;height:16px;"></i>
+                </button>
+            </div>
+        </div>
+        <div id="notif-list"></div>
+    </div>
+</div>
+
 <!-- SWEETALERT2 CDN & SMART SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- BASE URL for JS -->
+<meta name="base-url" content="<?= BASE_URL ?>">
+<!-- Global App Script (polling, notif panel) -->
+<script src="<?= BASE_URL ?>assets/js/app.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Matikan Page Loader setelah semua termuat
@@ -64,12 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let isWarning = banner.classList.contains('warning');
         let isDanger = banner.classList.contains('danger');
         
-        // Hanya cegat jika itu adalah pesan notifikasi sistem sesungguhnya
         if(isSuccess || isWarning || isDanger) {
-            banner.style.display = 'none'; // Sembunyikan banner asli
+            banner.style.display = 'none';
             let icon = isSuccess ? 'success' : (isWarning ? 'warning' : 'error');
             let title = isSuccess ? 'Berhasil!' : (isWarning ? 'Perhatian' : 'Gagal!');
-            
             Swal.fire({
                 icon: icon, title: title, text: banner.innerText.trim(),
                 confirmButtonColor: '#0ea5e9', confirmButtonText: 'Tutup'
@@ -84,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
-            let match = el.getAttribute('onclick').match(/confirm\(['"](.*?)['"]\)/);
+            let match = el.getAttribute('onclick').match(/confirm\(['\"](.*?)['"]\)/);
             let msg = match ? match[1] : 'Anda yakin melanjutkan?';
             Swal.fire({
                 title: 'Konfirmasi', text: msg, icon: 'warning',
@@ -92,11 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 confirmButtonText: 'Ya, Lanjutkan', cancelButtonText: 'Batal'
             }).then((result) => {
                 if(result.isConfirmed) {
-                    el.removeAttribute('onclick'); // prevent loop
+                    el.removeAttribute('onclick');
                     if(el.tagName === 'A' && el.hasAttribute('href') && el.getAttribute('href') !== '#') {
                         window.location.href = el.getAttribute('href');
                     } else {
-                        el.click(); // trigger actual navigation/action
+                        el.click();
                     }
                 }
             });
@@ -111,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
-            let match = onsubmit.match(/confirm\(['"](.*?)['"]\)/);
+            let match = onsubmit.match(/confirm\(['\"](.*?)['"]\)/);
             let msg = match ? match[1] : 'Anda yakin?';
             Swal.fire({
                 title: 'Konfirmasi', text: msg, icon: 'warning',
@@ -119,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 confirmButtonText: 'Ya, Lanjutkan'
             }).then((result) => {
                 if(result.isConfirmed) {
-                    form.removeAttribute('onsubmit'); // prevent loop
+                    form.removeAttribute('onsubmit');
                     form.submit();
                 }
             });

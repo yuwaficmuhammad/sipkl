@@ -202,7 +202,13 @@ if(isset($_GET['logout'])) {
                     <div style="font-size: 11px; opacity: 0.8; text-transform: uppercase; letter-spacing:0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?= str_replace('_', ' ', $role) ?></div>
                 </div>
             </div>
-            <a href="?logout=1" class="icon-btn" style="flex-shrink: 0;"><i data-lucide="log-out"></i></a>
+            <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+                <button id="btn-notif" class="icon-btn" type="button" title="Notifikasi" style="position:relative; background:none; border:none; cursor:pointer; padding:4px;">
+                    <i data-lucide="bell"></i>
+                    <span id="notif-badge" class="badge-dot" style="display:none;">0</span>
+                </button>
+                <a href="?logout=1" class="icon-btn" title="Logout"><i data-lucide="log-out"></i></a>
+            </div>
         </header>
         
         <!-- Main Content -->
