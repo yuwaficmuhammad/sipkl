@@ -29,19 +29,20 @@ if ($action === 'contacts') {
             GROUP BY from_user_id
         ) unread ON unread.from_user_id = u.id
         LEFT JOIN (
-            SELECT
-                CASE WHEN from_user_id = ? THEN to_user_id ELSE from_user_id END AS partner_id,
-                message,
-                created_at
-            FROM chat_messages
-            WHERE from_user_id = ? OR to_user_id = ?
-            ORDER BY created_at DESC
+            SELECT m1.message, m1.created_at,
+                   CASE WHEN m1.from_user_id = ? THEN m1.to_user_id ELSE m1.from_user_id END AS partner_id
+            FROM chat_messages m1
+            INNER JOIN (
+                SELECT MAX(id) as max_id
+                FROM chat_messages
+                WHERE from_user_id = ? OR to_user_id = ?
+                GROUP BY CASE WHEN from_user_id = ? THEN to_user_id ELSE from_user_id END
+            ) m2 ON m1.id = m2.max_id
         ) last_msg ON last_msg.partner_id = u.id
         WHERE u.id != ?
-        GROUP BY u.id
         ORDER BY last_at DESC, u.name ASC
     ");
-    $stmt->bind_param("iiiii", $me, $me, $me, $me, $me);
+    $stmt->bind_param("iiiiii", $me, $me, $me, $me, $me, $me);
     $stmt->execute();
     $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     echo json_encode($rows);
