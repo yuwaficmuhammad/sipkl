@@ -1,165 +1,206 @@
-# 🚀 SIPKL (Sistem Informasi Praktik Kerja Lapangan)
+# SIPKL — Sistem Informasi Praktik Kerja Lapangan
 
-![SIPKL Banner](https://img.shields.io/badge/Status-Production%20Ready-success)
-![PHP Version](https://img.shields.io/badge/PHP-8.0%2B-blue)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
+![PHP](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![Database](https://img.shields.io/badge/Database-MySQL%2FMariaDB-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-**SIPKL** adalah sebuah aplikasi manajemen Praktik Kerja Lapangan (PKL) berbasis web yang dirancang khusus untuk Sekolah Menengah Kejuruan (SMK) modern. Aplikasi ini memfasilitasi komunikasi dan pengelolaan data *End-to-End* yang melibatkan 4 pilar utama: **Admin Pokja Sekolah**, **Guru Pembimbing**, **Mitra Industri (DUDI)**, dan **Siswa**.
+**SIPKL** adalah aplikasi manajemen Praktik Kerja Lapangan (PKL) berbasis web yang dirancang khusus untuk Sekolah Menengah Kejuruan (SMK). Aplikasi ini mengelola alur PKL secara *end-to-end* dengan melibatkan 4 peran utama: **Admin**, **Guru Pembimbing**, **Pembimbing DUDI**, dan **Siswa**.
 
-Dengan antarmuka bergaya *Glassmorphism* yang memanjakan mata dan *Mobile-First Design*, SIPKL sangat mudah digunakan baik melalui Desktop maupun *Smartphone*.
+Dibangun dengan antarmuka *Glassmorphism* dan pendekatan *Mobile-First*, SIPKL nyaman digunakan baik di desktop maupun smartphone.
+
+---
+
+## Daftar Isi
+
+- [Fitur Unggulan](#-fitur-unggulan)
+- [Stack Teknologi](#-stack-teknologi)
+- [Instalasi](#-instalasi)
+- [Kredensial Default](#-kredensial-default)
+- [Panduan Per Role](#-panduan-penggunaan-per-role)
+  - [Admin](#1-admin-pokja-pkl)
+  - [Siswa](#2-siswa)
+  - [Guru Pembimbing](#3-guru-pembimbing-sekolah)
+  - [Pembimbing DUDI](#4-pembimbing-dudi-mitra-industri)
+- [Keamanan & Lisensi](#-keamanan--lisensi)
 
 ---
 
 ## ✨ Fitur Unggulan
 
-- 📍 **Absensi Cerdas dengan Geofencing & Face Recognition**
-  Mendukung Absensi Datang/Pulang bagi Siswa. Sistem divalidasi dengan algoritma Haversine (pembatasan radius lokasi GPS 100m) untuk *Proyek Internal*, dan validasi wajah (*Face API*) secara langsung (*client-side*).
-- 🗂️ **Manajemen Multi-PKL (Internal & Eksternal)**
-  Dukungan alur PKL untuk penugasan *Proyek Internal* Sekolah maupun pemetaan (*mapping*) ke Perusahaan Eksternal (Mitra DUDI).
-- 🧑‍💻 **Dashboard Multi-Peran Terpadu**
-  Satu aplikasi, 4 hak akses (*Role Base Access Control*):
-  - **Admin**: Konfigurasi timeline, master data siswa/guru/DUDI, pengaturan GPS sekolah.
-  - **Siswa**: Laporan absensi dan input Jurnal/Logbook kegiatan harian.
-  - **Guru Pembimbing**: Pemantauan absensi, validasi jurnal, dan *monitoring* nilai siswa bimbingannya.
-  - **Pembimbing DUDI**: Memantau anak magang dan melakukan Penilaian Akhir (Softskill & Hardskill).
-- 🛡️ **Keamanan Kelas Enterprise**
-  Terlindungi dari kerentanan *Cross-Site Request Forgery* (CSRF) via *Token Validation*, *Insecure Direct Object Reference* (IDOR), *SQL Injection* (via MySQLi Prepared Statements), dan dilengkapi *Hashing* BCRYPT.
-- 📱 **Mobile-First & UI Modern**
-  Desain estetis ala aplikasi modern (tanpa *border-radius* membosankan) menggunakan CSS Vanilla, meminimalisir ketergantungan *library* pihak ketiga. Animasi interaktif (Modal *Bottom-Sheet*) dan ikon vektor super ringan via [Lucide Icons](https://lucide.dev/).
+| Fitur | Deskripsi |
+|---|---|
+| 📍 **Absensi Geofencing + Face Recognition** | Validasi kehadiran siswa menggunakan GPS (algoritma Haversine, radius 100m) dan pengenalan wajah secara *client-side* |
+| 🗂️ **Multi-Jalur PKL** | Mendukung dua skema PKL: *Proyek Internal* Sekolah dan penempatan ke Perusahaan Mitra (DUDI) |
+| 🧑‍💻 **Dashboard Multi-Peran (RBAC)** | Satu aplikasi dengan 4 tampilan berbeda sesuai hak akses masing-masing pengguna |
+| 🛡️ **Keamanan Enterprise** | Proteksi CSRF, IDOR, SQL Injection (Prepared Statements), dan enkripsi password BCRYPT |
+| 📱 **Mobile-First & UI Modern** | Desain CSS Vanilla tanpa framework berat, animasi *bottom-sheet*, ikon ringan via Lucide |
 
 ---
 
-## 🛠️ Stack Teknologi Terapan
+## 🛠️ Stack Teknologi
 
-- **Bahasa Utama**: PHP 8.0+ (Native/Vanilla)
-- **Database**: MySQL / MariaDB
-- **Styling**: Vanilla CSS3 (Custom Design System, Glassmorphism)
-- **JavaScript**: Vanilla JS, [Face-api.js](https://github.com/justadudewhohacks/face-api.js) (Deteksi Wajah Klien)
-- **Ikonografi**: Lucide SVG Icons
+| Layer | Teknologi |
+|---|---|
+| Backend | PHP 8.0+ (Native/Vanilla) |
+| Database | MySQL / MariaDB |
+| Styling | Vanilla CSS3 (Glassmorphism Design System) |
+| JavaScript | Vanilla JS + [Face-api.js](https://github.com/justadudewhohacks/face-api.js) |
+| Icons | [Lucide SVG Icons](https://lucide.dev/) |
 
 ---
 
-## 🚀 Cara Instalasi & Penggunaan
+## 🚀 Instalasi
 
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/yuwaficmuhammad/sipkl.git
-   cd sipkl/app
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/yuwaficmuhammad/sipkl.git
+cd sipkl/app
+```
+
+### 2. Import Database
+
+1. Buat database baru di phpMyAdmin atau MySQL CLI:
+   ```sql
+   CREATE DATABASE pkl_management;
    ```
-2. **Impor Database**
-   - Buat database baru bernama `pkl_management` di phpMyAdmin / MySQL CLI.
-   - Impor berkas struktur tabel dari `database/schema.sql` ke dalam database tersebut.
-3. **Konfigurasi**
-   - Buka file `includes/config.php`.
-   - Sesuaikan kredensial *host*, *username*, dan *password* koneksi *database* MySQL Anda.
-4. **Jalankan Aplikasi**
-   - Anda bisa meletakkan *folder* ini di dalam `htdocs` (jika menggunakan XAMPP) atau menjalankan server internal PHP:
-     ```bash
-     php -S localhost:8000
-     ```
-   - Buka `http://localhost:8000` di peramban web Anda.
+2. Import skema tabel:
+   ```bash
+   mysql -u root -p pkl_management < database/schema.sql
+   ```
+
+### 3. Konfigurasi Koneksi
+
+Buka `includes/config.php` dan sesuaikan kredensial database:
+
+```php
+$host     = 'localhost';
+$user     = 'root';
+$password = '';
+$database = 'pkl_management';
+```
+
+### 4. Jalankan Aplikasi
+
+**Opsi A — XAMPP:** Letakkan folder `app/` di dalam `htdocs/`, lalu akses `http://localhost/app`.
+
+**Opsi B — PHP Built-in Server:**
+```bash
+php -S localhost:8000
+```
+Buka `http://localhost:8000` di browser.
 
 ---
 
-## 🔐 Kredensial Default (Admin)
+## 🔐 Kredensial Default
 
-Untuk memulai pengaturan awal (*setup*), silakan masuk menggunakan akun Administrator bawaan:
+Gunakan akun berikut untuk login pertama kali sebagai Administrator:
 
-- **Username**: `adminpkl`
-- **Password**: `admin123`
+| Field | Value |
+|---|---|
+| Username | `adminpkl` |
+| Password | `admin123` |
 
-*(Sangat disarankan untuk segera mengubah sandi ini pada antarmuka manajemen pengguna setelah instalasi).*
+> ⚠️ **Segera ganti password** setelah login pertama melalui menu Manajemen Pengguna.
 
----
-
-## 📸 Tangkapan Layar (Screenshots)
-
-*(Tangkapan layar dapat ditambahkan di sini oleh *developer* untuk memamerkan antarmuka Dasbor, Modal interaktif, dan halaman validasi Wajah/GPS).*
+Untuk membuat hash password baru:
+```bash
+php -r "echo password_hash('passwordbaru', PASSWORD_BCRYPT);"
+```
+Kemudian insert ke database:
+```sql
+INSERT INTO users (username, password, name, role)
+VALUES ('adminpkl', '<HASH_HASIL>', 'Admin Pokja PKL', 'admin');
+```
 
 ---
 
 ## 👥 Panduan Penggunaan Per Role
 
-### 🔴 1. Admin Pokja PKL
+---
 
-Admin adalah pengelola utama sistem. Semua konfigurasi awal **wajib** diselesaikan oleh Admin sebelum role lain dapat menggunakan aplikasi.
+### 1. Admin Pokja PKL 🔴
 
-**Langkah-langkah:**
+> Admin adalah pengelola utama sistem. Seluruh konfigurasi awal **wajib** diselesaikan oleh Admin sebelum role lain dapat menggunakan aplikasi.
 
-1. **Login** menggunakan akun admin (`adminpkl` / `admin123`, segera ganti setelah login pertama).
-2. **Kelola Tahun Ajaran** → Menu *Tahun Ajaran*: Buat tahun ajaran aktif (contoh: `2026/2027`) dan aktifkan.
-3. **Atur Timeline PKL** → Menu *Timeline*: Tentukan batas waktu Gate 1–4, tanggal mulai & selesai PKL Eksternal.
-4. **Atur Lokasi Sekolah (GPS)** → Menu *Lembaga*: Masukkan koordinat `lat,long` sekolah untuk validasi Geofencing absensi internal.
-5. **Import Data Guru** → Menu *Import Guru*: Upload file Excel data guru pembimbing sekolah.
-6. **Import Data Siswa** → Menu *Import Siswa*: Upload file Excel data siswa PKL.
-7. **Kelola Akun DUDI** → Menu *Manajemen DUDI*: Tambah akun mitra industri beserta data lokasi GPS perusahaan.
-8. **Mapping Siswa ke DUDI** → Menu *Mapping DUDI*: Petakan siswa ke perusahaan mitra dan tentukan guru pembimbingnya.
-9. **Kelola Proyek Internal** → Menu *Proyek Internal*: Buat proyek internal dan assign tim siswa beserta ketua tim.
-10. **Pantau Absensi** → Menu *Rekap Absensi*: Lihat rekapitulasi kehadiran seluruh siswa.
-11. **Export Data** → Menu *Export*: Unduh data absensi/penilaian dalam format Excel/CSV.
-12. **Kelola Arsip** → Menu *Arsip*: Akses data tahun ajaran yang sudah selesai.
+**Urutan setup yang disarankan:**
+
+1. Login menggunakan akun admin.
+2. **Tahun Ajaran** — Buat dan aktifkan tahun ajaran berjalan (contoh: `2026/2027`).
+3. **Timeline PKL** — Tentukan batas waktu Gate 1–4 dan periode PKL Eksternal.
+4. **Lembaga / GPS Sekolah** — Masukkan koordinat `lat,long` sekolah untuk validasi geofencing absensi internal.
+5. **Import Guru** — Upload file Excel data guru pembimbing sekolah.
+6. **Import Siswa** — Upload file Excel data siswa PKL.
+7. **Manajemen DUDI** — Tambah akun mitra industri beserta koordinat GPS kantor.
+8. **Mapping DUDI** — Petakan siswa ke perusahaan mitra dan tentukan guru pembimbingnya.
+9. **Proyek Internal** — Buat proyek internal, assign tim siswa, dan tentukan ketua tim.
+10. **Rekap Absensi** — Pantau dan verifikasi kehadiran seluruh siswa.
+11. **Export Data** — Unduh rekap absensi atau penilaian dalam format Excel/CSV.
+12. **Arsip** — Akses dan kelola data dari tahun ajaran yang sudah selesai.
 
 ---
 
-### 🟢 2. Siswa
+### 2. Siswa 🟢
 
-Siswa menggunakan aplikasi setiap hari untuk absensi dan pencatatan kegiatan.
+> Siswa menggunakan aplikasi setiap hari untuk mencatat kehadiran dan kegiatan harian.
 
-**Langkah-langkah:**
+**Alur penggunaan harian:**
 
-1. **Login** menggunakan username & password yang diberikan oleh Admin.
-2. **Cek Dashboard** → Lihat notifikasi timeline (Gate aktif, pengingat deadline) dan status penempatan PKL.
-3. **Absensi Datang** → Menu *Absensi* → Tombol **Datang**:
-   - Aplikasi akan mengakses **kamera** untuk validasi wajah (Face Recognition).
-   - Aplikasi akan mengakses **GPS** untuk validasi lokasi (radius 100m dari sekolah/perusahaan).
-   - Jika valid, waktu datang tercatat otomatis.
-4. **Absensi Pulang** → Lakukan hal yang sama dengan tombol **Pulang** saat hendak pulang.
-5. **Isi Jurnal/Logbook Harian** → Menu *Logbook*: Catat kegiatan yang dikerjakan hari ini sebelum pulang.
-6. **Pantau Rekap Absensi** → Lihat riwayat kehadiran pribadi (Hadir, Sakit, Izin, Alpha).
-7. **Unduh Sertifikat** → Menu *Sertifikat*: Unduh sertifikat PKL setelah program selesai (jika tersedia).
+1. Login menggunakan username dan password yang diberikan Admin.
+2. **Dashboard** — Cek notifikasi deadline Gate aktif dan status penempatan PKL.
+3. **Absensi Datang** — Buka menu *Absensi*, tekan tombol **Datang**:
+   - Izinkan akses **Kamera** (untuk validasi wajah).
+   - Izinkan akses **Lokasi/GPS** (validasi radius 100m dari titik sekolah/perusahaan).
+   - Waktu datang tercatat otomatis jika validasi berhasil.
+4. **Absensi Pulang** — Ulangi langkah di atas dengan tombol **Pulang**.
+5. **Logbook Harian** — Buka menu *Logbook*, isi catatan kegiatan hari ini sebelum pulang.
+6. **Rekap Absensi** — Lihat riwayat kehadiran pribadi (Hadir / Sakit / Izin / Alpha).
+7. **Sertifikat** — Unduh sertifikat PKL setelah program selesai (jika sudah tersedia).
 
-> ⚠️ Pastikan izin **Kamera** dan **Lokasi** sudah diberikan di browser sebelum melakukan absensi.
-
----
-
-### 🔵 3. Guru Pembimbing Sekolah
-
-Guru memantau dan memvalidasi aktivitas siswa yang menjadi tanggung jawabnya.
-
-**Langkah-langkah:**
-
-1. **Login** menggunakan akun yang di-import oleh Admin.
-2. **Cek Dashboard** → Lihat ringkasan siswa bimbingan dan notifikasi timeline Gate.
-3. **Pantau Absensi Siswa** → Menu *Rekap Absensi*: Lihat detail kehadiran setiap siswa bimbingan (waktu datang, pulang, foto, koordinat GPS).
-4. **Validasi Logbook** → Menu *Logbook Siswa*: Baca dan verifikasi catatan kegiatan harian siswa.
-5. **Monitor Gate Proyek** → Menu *Gate Proyek*: Pantau progres gate proyek internal siswa bimbingan (Gate 1–4) dan lihat dokumen yang diupload.
-6. **Lihat Profil** → Perbarui data profil (foto, kontak, alamat) melalui menu Profil.
+> ⚠️ Pastikan izin **Kamera** dan **Lokasi** sudah diaktifkan di browser sebelum melakukan absensi.
 
 ---
 
-### 🟠 4. Pembimbing DUDI (Mitra Industri)
+### 3. Guru Pembimbing Sekolah 🔵
 
-Pembimbing dari perusahaan memantau kehadiran dan memberikan penilaian akhir siswa magang.
+> Guru memantau dan memvalidasi aktivitas siswa yang menjadi tanggung jawabnya.
 
-**Langkah-langkah:**
+**Menu yang tersedia:**
 
-1. **Login** menggunakan akun yang dibuat oleh Admin (akun khusus role `pembimbing_dudika`).
-2. **Cek Dashboard** → Lihat daftar siswa magang di perusahaan Anda.
-3. **Pantau Absensi Siswa** → Menu *Rekap Absensi*: Lihat kehadiran siswa di perusahaan (waktu datang, pulang, foto selfie, koordinat lokasi).
-4. **Berikan Penilaian Akhir** → Menu *Penilaian*:
-   - Isi nilai **Softskill** (sikap, kedisiplinan, komunikasi) — skala 0–100.
-   - Isi nilai **Hardskill** (kompetensi teknis) — skala 0–100.
-   - Tambahkan catatan/rekomendasi untuk siswa.
-5. **Perbarui Profil** → Pastikan data perusahaan (nama pimpinan, nama instruktur, nomor kontak, koordinat GPS kantor) sudah benar agar validasi absensi siswa berjalan akurat.
+1. Login menggunakan akun yang di-import oleh Admin.
+2. **Dashboard** — Lihat ringkasan siswa bimbingan dan pengingat timeline Gate.
+3. **Rekap Absensi** — Pantau kehadiran per siswa bimbingan secara detail (jam datang, jam pulang, foto, koordinat GPS).
+4. **Logbook Siswa** — Baca dan verifikasi catatan kegiatan harian setiap siswa.
+5. **Gate Proyek** — Monitor progres Gate 1–4 proyek internal siswa bimbingan dan lihat dokumen yang sudah diupload.
+6. **Profil** — Perbarui data diri (foto, nomor kontak, alamat).
 
-> 💡 Koordinat GPS perusahaan digunakan sebagai pusat validasi lokasi absensi siswa PKL Eksternal.
+---
+
+### 4. Pembimbing DUDI (Mitra Industri) 🟠
+
+> Pembimbing dari perusahaan mitra memantau kehadiran dan memberikan penilaian akhir siswa magang.
+
+**Menu yang tersedia:**
+
+1. Login menggunakan akun yang dibuat Admin (role: `pembimbing_dudika`).
+2. **Dashboard** — Lihat daftar siswa yang magang di perusahaan Anda.
+3. **Rekap Absensi** — Pantau kehadiran siswa magang (jam datang, jam pulang, foto selfie, koordinat lokasi).
+4. **Penilaian Akhir** — Isi penilaian untuk setiap siswa:
+   - **Softskill** (sikap, kedisiplinan, komunikasi) — skala 0–100.
+   - **Hardskill** (kompetensi teknis) — skala 0–100.
+   - Tambahkan catatan atau rekomendasi jika diperlukan.
+5. **Profil Perusahaan** — Pastikan data berikut sudah benar:
+   - Nama pimpinan dan instruktur perusahaan.
+   - Nomor kontak instruktur.
+   - Koordinat GPS kantor *(digunakan sebagai pusat validasi lokasi absensi siswa magang)*.
+
+> 💡 Koordinat GPS perusahaan yang akurat memastikan validasi absensi siswa PKL Eksternal berjalan dengan benar.
 
 ---
 
 ## 🛡️ Keamanan & Lisensi
 
-Aplikasi ini dikembangkan dengan kaidah *Secure Coding* dan diinisiasi untuk kebutuhan edukasi serta implementasi sistem sekolah yang aman.
+Aplikasi ini dikembangkan dengan prinsip *Secure Coding* untuk kebutuhan edukasi dan implementasi sistem sekolah yang aman.
 
-Dilisensikan di bawah **MIT License**. Jangan ragu untuk melakukan *fork*, modifikasi, maupun kontribusi!
-
+Dilisensikan di bawah **MIT License** — bebas untuk di-*fork*, dimodifikasi, dan dikontribusikan.
