@@ -29,6 +29,22 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `push_subscriptions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `endpoint` text NOT NULL,
+  `p256dh` varchar(255) NOT NULL,
+  `auth` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unik_endpoint` (endpoint(191)),
+  KEY `idx_user` (`user_id`),
+  CONSTRAINT `push_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- ========================================
 -- TABEL REFERENSI USERS
 -- ========================================

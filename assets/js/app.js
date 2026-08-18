@@ -146,6 +146,53 @@
     return d.innerHTML;
   }
 
+  // ─── WEB PUSH NOTIFICATION ────────────────────────────────────────────────
+  const VAPID_PUBLIC_KEY = 'BLrKf2MOVWbkchKuNocxJR-v7txxseyn070jpOetN-3n9I8T0wuSPWuVYFEp_TfpIJxBQLPqHonTMPrjj6ilp44';
+
+  function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+  }
+
+  async function initWebPush() {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+    
+    try {
+      // 1. Register Service Worker
+      const registration = await navigator.serviceWorker.register(BASE + 'sw.js');
+      
+      // 2. Minta Izin
+      const permission = await Notification.requestPermission();
+      if (permission !== 'granted') return;
+
+      // 3. Cek subscription yang ada
+      let subscription = await registration.pushManager.getSubscription();
+      
+      // 4. Buat baru jika belum ada
+      if (!subscription) {
+        subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+        });
+      }
+
+      // 5. Kirim ke server
+      await fetch(BASE + 'api/subscribe.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(subscription)
+      });
+    } catch (e) {
+      console.warn('Web Push setup failed:', e);
+    }
+  }
+
   // ─── INIT ─────────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     // Bell icon click
@@ -171,6 +218,7 @@
     if (readAllBtn) readAllBtn.addEventListener('click', markAllRead);
 
     startPolling();
+    initWebPush();
   });
 
   // Expose for chat page

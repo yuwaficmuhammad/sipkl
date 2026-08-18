@@ -25,6 +25,11 @@ $base_path = str_replace('\\', '/', $base_path);
 $base_path = empty($base_path) ? '/' : $base_path . '/';
 define('BASE_URL', $base_path);
 
+// --- KONFIGURASI WEB PUSH (VAPID) ---
+define('VAPID_PUBLIC_KEY', 'BLrKf2MOVWbkchKuNocxJR-v7txxseyn070jpOetN-3n9I8T0wuSPWuVYFEp_TfpIJxBQLPqHonTMPrjj6ilp44');
+define('VAPID_PRIVATE_KEY', 'Ez0Cj-yHEB1HHlyq8Eu7G7kwjSpOmuSOy2RkAHyxUuM');
+
+
 // --- KONFIGURASI ABSENSI ---
 
 // Fungsi Menghitung Jarak (Haversine) dalam Meter

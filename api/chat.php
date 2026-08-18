@@ -114,6 +114,13 @@ if ($action === 'send' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $new_id = $conn->insert_id;
 
+    // --- KIRIM WEB PUSH NOTIFICATION ---
+    require_once '../includes/push.php';
+    $sender_name = $_SESSION['name'] ?? 'Seseorang';
+    // Hanya ambil text awal untuk preview
+    $preview = mb_strlen($msg) > 40 ? mb_substr($msg, 0, 40) . '...' : $msg;
+    sendWebPush($to, "Pesan baru dari $sender_name", $preview, "/chat/index.php");
+
     echo json_encode(['ok' => true, 'id' => $new_id, 'created_at' => date('Y-m-d H:i:s')]);
     exit;
 }
