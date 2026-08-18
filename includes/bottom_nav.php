@@ -38,7 +38,7 @@ $role = getRole();
     </a>
     <?php endif; ?>
     
-    <a href="#" class="nav-item <?= $active_page == 'profil' ? 'active' : '' ?>">
+    <a href="<?= BASE_URL ?>profil.php" class="nav-item <?= $active_page == 'profil' ? 'active' : '' ?>">
         <i data-lucide="user"></i>
         <span>Profil</span>
     </a>
