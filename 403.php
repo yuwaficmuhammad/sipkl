@@ -11,7 +11,7 @@
     ?>
     <link rel="icon" type="image/svg+xml" href="<?= $base ?>assets/img/favicon.svg">
     <link rel="stylesheet" href="<?= $base ?>assets/css/style_v2.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     <style>
         body {
             display: flex;
