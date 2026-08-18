@@ -13,3 +13,4 @@ app/uploads/dokumen/*
 .idea/
 .vscode/
 *.swp
+includes/config.php
